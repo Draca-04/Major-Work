@@ -3,25 +3,26 @@ import gooeypie as gp
 from jmespath import search
 
 
-def Next_Window(event):
-    event = gp.GooeyPieApp('Next Window')
-
+app = gp.GooeyPieApp('Login')
+next_window = gp.Window(app,'Next Window')
+next_window.set_size(400,500)
 
         
-
-
-app = gp.GooeyPieApp('Login')
 
 user_lbl = gp.Label(app, "Username")
 user_inp = gp.Input(app)
 
-def login(index):
-    global user_inp
-    username = 'Drac'
-    if user_inp == username:
-        Next_Window()  
+def login(event):
+    user = user_inp.text
+    username = {
+    "Paul": ("PB", "11.9", "SB", "12.1"),
+    "Jordan": ("PB", "14.5", "SB", "15.1")
+    }
+    if user in username:
+        print("Athlete found")
+        next_window.show()
     else:
-        print("That is the wrong username.")
+        print("Athlete not found")
            
 login_btn = gp.Button(app, 'Login', login)
 status_lbl = gp.Label(app, '')
