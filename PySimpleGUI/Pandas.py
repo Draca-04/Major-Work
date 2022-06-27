@@ -8,29 +8,6 @@ import PySimpleGUI as sg
 import Test_Data as TD
 
 
-# # Linear Search in Python
-# def Linear_Search(List_Of_Athletes, Length_Of_Array, Search_Athlete):
-
-#     # Going through array sequencially
-#     for i in range(0, Length_Of_Array):
-#         if (List_Of_Athletes[i] == Search_Athlete):
-#             print("Athlete ID", i)
-#     return -1
-
-
-# List_Of_Athletes = ["Joe", "Paul", "Susan", "Aaron", "Charlie", "Bob"]
-# AthleteID = "Bob"
-# Length_Of_Array = len(List_Of_Athletes)
-# result = Linear_Search(List_Of_Athletes, Length_Of_Array, AthleteID)
-# if(result == -1):
-#     print("Athlete not found")
-# else:
-#     print("AthleteID: ", result)
-
-#Athlete_Name = str(input("Enter Athlete Name () "))
-
-# Search = Linear_Search(TD.AthleteNameList, TD.LenOfAthleteList, Athlete_Name)
-
 
 def Athlete(): 
 
@@ -38,33 +15,36 @@ def Athlete():
     b = True
     while b == True:
         b = False
-        for i in range(TD.LenOfAthleteList):
-            Athlete_Name = input("Enter Athlete Name ")
-            if Athlete_Name == TD.AthleteNameList[i].lower():
-                AthleteID = TD.AthleteProfileList[i]
-                print("Athlete found!")
+        for i in range(TD.LenOfAthleteList):                    # Use the range of the list to search through it
+            Athlete_Name = input("Enter Athlete Name ")         # Must be strictly uppercase or lowercase
+            if Athlete_Name == TD.AthleteNameList[i].lower():   # Checks if the name corresponds with the list
+                AthleteID = TD.AthleteProfileList[i]            # Assigns a variable to the corresponding name
+                print("Athlete found!")                         # Confirmation
 
                 while a == True:
-                    NEW_time = input("Would you like to add a new time? ")
-                    if NEW_time == "yes" or NEW_time == "y" or NEW_time == "Yes" or NEW_time == "Y":
-                            Time = input("Print athlete's time eg(11.1) ")
+                    NEW_time = input("Would you like to add a new time? ")                              
+                    if NEW_time == "yes" or NEW_time == "y" or NEW_time == "Yes" or NEW_time == "Y" or NEW_time == "YES":    # Given a few different ways of responding, responses such as ye or Ye will not be accepted
+                            Time = input("Print athlete's time eg(11.1) ")                                                   # Variable assigned to add time
+                            
+                            # Dataframe used to append to the existing athlete
                             AddToList = pd.DataFrame(
                                 {"Athlete" : [str(Athlete_Name)],
                             "Times" : [Time]},
                             index = [1])
 
-                            AthleteID = AthleteID.append(AddToList, ignore_index=True)
+                            AthleteID = AthleteID.append(AddToList, ignore_index=True)  # Adds (AddToList) to the athletes profile, makes a true index rather than having to constantly add 5, 6, 7...
                             print(AthleteID)
 
                     else:
-                        print(AthleteID)
+                        print(AthleteID) # If user does not want to add a new time they can simply view stats here
                         a = False
                         NextAthlete = input("Search another athlete? ")
-                        if NextAthlete == "yes" or NextAthlete == "y" or NextAthlete == "Yes" or NextAthlete == "Y":
+                        if NextAthlete == "yes" or NextAthlete == "y" or NextAthlete == "Yes" or NextAthlete == "Y" or NextAthlete == "YES": # Given a few different ways of responding, responses such as ye or Ye will not be accepted
                             b = True
                         else:
                             b = False
             
+            # Exactly the same as first if statement just checking if response was in uppercase
             elif Athlete_Name == TD.AthleteNameList[i].upper():
                 AthleteID = TD.AthleteProfileList[i]
                 print("Athlete found!")
@@ -89,27 +69,20 @@ def Athlete():
                             b = True
                         else:
                             b = False
+
+
+
             else:
-                print("Error")
+                print("Error")  # Error message if athlete is not found... Error occurs temporarily if you search for athletes that are not at index 0
 
-Athlete()         
-
-
+Athlete()   # Runs function
 
 
 
 
 
-    # def Times(TimeID, time, AthleteID, EventID):
-    #     pass 
-         
 
-    # def Competition(CompID, Date_Event, Event):
-    #      Athelete_name = pd.DataFrame(
-    #     {"Athlete" : [str(CompID)],
-    #     "Times" : [11.5, 11.8, 12.9]},
-    #     index = [1, 2, 3])
 
-    # def Event(EventID, Event_Type, CompID):
+
 
 
