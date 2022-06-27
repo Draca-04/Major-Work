@@ -3,20 +3,19 @@
 
 # imports
 from operator import index
-from sqlite3 import Time
 import pandas as pd
 import PySimpleGUI as sg
 import Test_Data as TD
 
 
-# Linear Search in Python
-def Linear_Search(List_Of_Athletes, Length_Of_Array, Search_Athlete):
+# # Linear Search in Python
+# def Linear_Search(List_Of_Athletes, Length_Of_Array, Search_Athlete):
 
-    # Going through array sequencially
-    for i in range(0, Length_Of_Array):
-        if (List_Of_Athletes[i] == Search_Athlete):
-            print("Athlete ID", i)
-    return -1
+#     # Going through array sequencially
+#     for i in range(0, Length_Of_Array):
+#         if (List_Of_Athletes[i] == Search_Athlete):
+#             print("Athlete ID", i)
+#     return -1
 
 
 # List_Of_Athletes = ["Joe", "Paul", "Susan", "Aaron", "Charlie", "Bob"]
@@ -28,51 +27,74 @@ def Linear_Search(List_Of_Athletes, Length_Of_Array, Search_Athlete):
 # else:
 #     print("AthleteID: ", result)
 
-#Athlete_Name = str(input("Enter Athlete Name "))
+#Athlete_Name = str(input("Enter Athlete Name () "))
 
 # Search = Linear_Search(TD.AthleteNameList, TD.LenOfAthleteList, Athlete_Name)
 
 
-
 def Athlete(): 
-    # global Search
+
     a = True
-    # b = False
-    while True:
-        
-        for i in range(1):
-            # while b == True:
-            #     b = False
+    b = True
+    while b == True:
+        b = False
+        for i in range(TD.LenOfAthleteList):
+            Athlete_Name = input("Enter Athlete Name ")
+            if Athlete_Name == TD.AthleteNameList[i].lower():
+                AthleteID = TD.AthleteProfileList[i]
+                print("Athlete found!")
 
-                Athlete_Name = input("Enter Name ")
-                if Athlete_Name == TD.AthleteNameList[i]:
-                    AthleteID = TD.AthleteProfileList[i]
-                
-                    while a == True:
-                        NEW_time = input("Would you like to add a new time? ")
-                        if NEW_time == "yes" or NEW_time == "y" or NEW_time == "Yes" or NEW_time == "Y":
-                                Time = input("Enter athlete's time eg(11.1) ")
-                                Location = input("Enter meet eg(Sydney Olympic Park) ")
-                                AddToList = pd.DataFrame(
-                                    {"Athlete" : [str(Athlete_Name)],
-                                "Times" : [Time],
-                                "Location" : [Location]},
-                                index = [1])
+                while a == True:
+                    NEW_time = input("Would you like to add a new time? ")
+                    if NEW_time == "yes" or NEW_time == "y" or NEW_time == "Yes" or NEW_time == "Y":
+                            Time = input("Print athlete's time eg(11.1) ")
+                            AddToList = pd.DataFrame(
+                                {"Athlete" : [str(Athlete_Name)],
+                            "Times" : [Time]},
+                            index = [1])
 
-                                AthleteID = AthleteID.append(AddToList, ignore_index=True)
-                                print(AthleteID)
-
-                        else:
+                            AthleteID = AthleteID.append(AddToList, ignore_index=True)
                             print(AthleteID)
-                            a = False
-                            # NextAthlete = input("Would you like to search another athlete? ")
-                            # if NextAthlete == "yes" or NextAthlete == "y" or NextAthlete == "Yes" or NextAthlete == "Y":
-                            #     b = True
-                            # else:
-                            #     pass
-                else:
-                    print("error")
-                
+
+                    else:
+                        print(AthleteID)
+                        a = False
+                        NextAthlete = input("Search another athlete? ")
+                        if NextAthlete == "yes" or NextAthlete == "y" or NextAthlete == "Yes" or NextAthlete == "Y":
+                            b = True
+                        else:
+                            b = False
+            
+            elif Athlete_Name == TD.AthleteNameList[i].upper():
+                AthleteID = TD.AthleteProfileList[i]
+                print("Athlete found!")
+
+                while a == True:
+                    NEW_time = input("Would you like to add a new time? ")
+                    if NEW_time == "yes" or NEW_time == "y" or NEW_time == "Yes" or NEW_time == "Y":
+                            Time = input("Print athlete's time eg(11.1) ")
+                            AddToList = pd.DataFrame(
+                                {"Athlete" : [str(Athlete_Name)],
+                            "Times" : [Time]},
+                            index = [1])
+
+                            AthleteID = AthleteID.append(AddToList, ignore_index=True)
+                            print(AthleteID)
+
+                    else:
+                        print(AthleteID)
+                        a = False
+                        NextAthlete = input("Search another athlete? ")
+                        if NextAthlete == "yes" or NextAthlete == "y" or NextAthlete == "Yes" or NextAthlete == "Y":
+                            b = True
+                        else:
+                            b = False
+            else:
+                print("Error")
+
+Athlete()         
+
+
 
 
 
@@ -91,5 +113,3 @@ def Athlete():
     # def Event(EventID, Event_Type, CompID):
 
 
-
-Athlete()
